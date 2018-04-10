@@ -3,17 +3,19 @@ $_OPTIMIZATION["title"] = "Kunlik bonus";
 $usid = $_SESSION["user_id"];
 $uname = $_SESSION["user"];
 
-# Настройки бонусов
+# Bonus sozlamasi
 $bonus_min = 10;
 $bonus_max = 100;
 
-?>
-	<div>
-<center>
+?><div class="s-bk-lf">
+	<div class="acc-title">Kunlik bonus</div>
+</div>
+<div class="silver-bk">
+<div class="clr"></div> <br>
 Bonus har 24 soatda bir marta beriladi.  <BR />
 Bonus miqdori <font color="#2A8758"><b><?=$bonus_min;?> </b></font> so'mdan <font color="#2A8758"><b><?=$bonus_max;?></b></font> so'mgacha tasodifiy tarzda aniqlanadi.
 <br>Reklama banneri ustiga bosganingizdan so'ng "BONUS OLISH" tugmasi chiqadi.</center>
-
+<BR /><BR />
 
 
 	
@@ -120,5 +122,6 @@ So'nggi 20 ta bonus:
   ?>
 
 </table>
-
+<div class="clr"></div>		
 </div>
+
