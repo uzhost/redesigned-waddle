@@ -87,7 +87,7 @@ $("#bonus").load("# #bonus"); }, 1000); </script></center>
 ?>
 
 <h3 style="text-align:center">
-Последние 20 бонусов
+So'nggi 20 ta bonus:
 </h3>
 <table class="table table-bordered" cellpadding='3' cellspacing='0' align='center' width="97%">  
 <thead>
