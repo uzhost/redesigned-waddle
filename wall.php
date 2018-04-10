@@ -1,5 +1,5 @@
  <?
-$_OPTIMIZATION["title"] = "Информация о пользователе";
+$_OPTIMIZATION["title"] = "Foydalanuvchi haqida ma'lumot";
  $usname = $_SESSION["user"];
  $usid = $_SESSION["user_id"];
  $date = time();
@@ -20,15 +20,15 @@ $_OPTIMIZATION["title"] = "Информация о пользователе";
 	<div class="panel-heading" style="padding: 5px 15px;">Информация о пользователе:</div>
 	<div class="panel-body">
 ID: <span class="pull-right"><?=$us_inf['id']; ?></span><br/>
-Логин: <span class="pull-right"><?=$name; ?></span><br/>
-Регистрация: <span class="pull-right"><?=date('d-m-Y', $us_inf['date_reg']); ?> г.</span><br/>
-Заходил: <span class="pull-right"><?=date('d-m-Y', $us_inf['date_login']); ?> г.</span><br/>
-Ввел денег: <span class="pull-right"><?=$dat['insert_sum']; ?> руб.</span><br/>
-Вывел денег: <span class="pull-right"><?=$dat['payment_sum']; ?> руб.</span><br/>
-Кто пригласил(РЕФЕРЕР): <span class="pull-right"><b><a href="<?=$us_inf['referer']; ?>"><?=$us_inf['referer']; ?></a></b></span><br/>
-Принес рефереру: <span class="pull-right"><?=$dat['to_referer']; ?> руб.</span><br/>
-Кол-во рефералов: <span class="pull-right"><?=$us_inf["referals"]; ?> чел.</span><br/>
-Заработал на рефералах: <span class="pull-right"><?=$dat['from_referals']; ?> руб.</span><br/>
+Login: <span class="pull-right"><?=$name; ?></span><br/>
+Ro'yhatdan o'tgan: <span class="pull-right"><?=date('d-m-Y', $us_inf['date_reg']); ?> y.</span><br/>
+So'nggi kirishi: <span class="pull-right"><?=date('d-m-Y', $us_inf['date_login']); ?> y.</span><br/>
+Sarmoyasi: <span class="pull-right"><?=sprintf("%.2f",$dat['insert_sum']*$rubl_to_sum); ?> so'm</span><br/>
+Hisobdan yechgan: <span class="pull-right"><?=sprintf("%.2f",$dat['payment_sum']*$rubl_to_sum); ?> so'm</span><br/>
+Kim taklif etgan(Referer): <span class="pull-right"><b><a href="<?=$us_inf['referer']; ?>"><?=$us_inf['referer']; ?></a></b></span><br/>
+Refererga nafi: <span class="pull-right"><?=sprintf("%.2f",$dat['to_referer']); ?> so'm</span><br/>
+Referallari soni: <span class="pull-right"><?=$us_inf["referals"]; ?>  nafar</span><br/>
+Referallardan daromadi: <span class="pull-right"><?=sprintf("%.2f",$dat['from_referals']); ?> so'm</span><br/>
 	</div>
 </div>
 
@@ -52,6 +52,7 @@ ID: <span class="pull-right"><?=$us_inf['id']; ?></span><br/>
 3. За покупку любого тарифа дается <b>0.1%</b> от суммы в рублях.<br>
 4. За получение бонусов от <b>0.1 до 5</b> единицы рейтинга.<br><br>
 
+	<div class="clr"></div>	
 </div>	
 
 <? } ?>
