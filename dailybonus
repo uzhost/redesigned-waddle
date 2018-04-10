@@ -1,12 +1,7 @@
 <?PHP
-$_OPTIMIZATION["title"] = "Ежедневный бонус";
+$_OPTIMIZATION["title"] = "Kunlik bonus";
 $usid = $_SESSION["user_id"];
 $uname = $_SESSION["user"];
-
-# Реф начисление
-$db->Query("SELECT user, referer_id FROM db_users_a WHERE id = '{$usid}' LIMIT 1");
-$user_refdata = $db->FetchArray();
-$refid = $user_refdata["referer_id"];
 
 # Настройки бонусов
 $bonus_min = 10;
@@ -15,9 +10,9 @@ $bonus_max = 100;
 ?>
 	<div>
 <center>
-Бонус выдается каждые 24 часа. <BR />
-Сумма бонуса генерируется случайно от <font color="#2A8758"><b><?=$bonus_min/100;?></b></font> до <font color="#2A8758"><b><?=$bonus_max/100;?></b></font> руб.
-<br>После перехода по баннеру в низу появится кнопка (получить бонус).</center>
+Bonus har 24 soatda bir marta beriladi.  <BR />
+Bonus miqdori <font color="#2A8758"><b><?=$bonus_min;?> </b></font> so'mdan <font color="#2A8758"><b><?=$bonus_max;?></b></font> so'mgacha tasodifiy tarzda aniqlanadi.
+<br>Reklama banneri ustiga bosganingizdan so'ng "BONUS OLISH" tugmasi chiqadi.</center>
 
 
 
@@ -35,21 +30,19 @@ $hide_form = false;
 		if(isset($_POST["bonus"])){
 		
 			$sumrand = rand($bonus_min, rand($bonus_min, $bonus_max) );
-			$sum=$sumrand/100;
-			$sumref = $sum * 0.01; // Реф начисление 5%
+			
+			
 			
 			# Зачилсяем юзверю
-			$db->Query("UPDATE db_users_a SET rating = rating + 0.1 WHERE id = '$usid'"); // 0.1 колличество рейтинга
-			$db->Query("UPDATE db_users_b SET money_p = money_p + '$sum' WHERE id = '$usid'");
-			$db->Query("UPDATE db_users_b SET money_p = money_p + '$sumref' WHERE id = '$refid'"); // Реф начисление.
+			$db->Query("UPDATE db_users_b SET money_p = money_p + '$sumrand' WHERE id = '$usid'");
 			
 			# Вносим запись в список бонусов
-			$db->Query("INSERT INTO db_bonus (user, user_id, sum, date_add, date_del) VALUES ('$uname','$usid','$sum','$dadd','$ddel')");
+			$db->Query("INSERT INTO db_bonus (user, user_id, sum, date_add, date_del) VALUES ('$uname','$usid','$sumrand','$dadd','$ddel')");
 			
 			# Случайная очистка устаревших записей
 			$db->Query("DELETE FROM db_bonus WHERE date_del < '$dadd'");
 			
-			echo "<div class='alert alert-success'>На Ваш счет для покупок зачислен бонус в размере {$sum} руб.</div>";
+			echo "<div class='alert alert-success'>Sizga {$sumrand} so'm miqdorida bonus berildi</div>";
 			
 			$hide_form = true;
 			
@@ -64,12 +57,12 @@ $hide_form = false;
 <div class="column_3" id="hidden_link" onclick="document.all.hidden_link1.style.display='block';" style="width: 468px;display:yes">
 
 <?php
-include "_bonlink.php";
+include "_banlink.php";
 ?>
 <br/>
 </div>
 <div class="column_3" id="hidden_link1" onclick="document.all.hidden_link2.style.display='block';" style="display:none"><br/>
-<form action="" method="post"><input type="submit" name="bonus" value="Получить бонус" class="btn btn-success"></form></div>
+<form action="" method="post"><input type="submit" name="bonus" value="Bonus Olish" class="btn btn-success"></form></div>
 </center>
 
 
@@ -87,7 +80,7 @@ $seconds = ceil(($minutes - floor($minutes))*60);
 $min=ceil($minutes)-1;
 	   ?>
 
-<center style="margin: 5px 0;font-size: 18px;color: #f33;"><b id="bonus">Следующий бонус будет доступен через: <?=json_encode($hours);echo ' ч.  ';echo json_encode($min);echo ' мин.  '; echo json_encode($seconds);echo ' сек.  ';?></b><script>setInterval(function(){
+<center style="margin: 5px 0;font-size: 18px;color: #f33;"><b id="bonus">Keyin bonusni: <?=json_encode($hours);echo ' soat  ';echo json_encode($min);echo ' daqiqa  '; echo json_encode($seconds);echo ' soniyadan  ';?> olishingiz mumkin</b><script>setInterval(function(){
 $("#bonus").load("# #bonus"); }, 1000); </script></center>
         <?php
 	}
@@ -99,9 +92,9 @@ $("#bonus").load("# #bonus"); }, 1000); </script></center>
 <table class="table table-bordered" cellpadding='3' cellspacing='0' align='center' width="97%">  
 <thead>
 	<th><b>ID</b></th>
-	<th><b>Пользователь</b></th>
-	<th><b>Сумма</b></th>
-	<th><b>Дата</b></th>
+	<th><b>Foydalanuvchi</b></th>
+	<th><b>Miqdori</b></th>
+	<th><b>Vaqti</b></th>
 </thead>
   <?PHP
   
@@ -123,7 +116,7 @@ $("#bonus").load("# #bonus"); }, 1000); </script></center>
 		
 		}
   
-	}else echo '<tr><td align="center" colspan="5">Нет записей</td></tr>'
+	}else echo '<tr><td align="center" colspan="5">Ma'lumot mavjud emas!</td></tr>'
   ?>
 
 </table>
