@@ -15,7 +15,7 @@ $users_info = $db->FetchArray();
 <p style="text-align: center;">
 Теперь Вы можете пополнить рекламный бюджет со счета покупок и запустить показ рекламы.
 <br/><br/>
-<b class="text-danger"><u>БАЛАНС ПОКУПОК: {!BALANCE_B!} РУБ.</u></b>
+<b class="text-danger"><u>БАЛАНС ПОКУПОК: {!BALANCE_B!} монета.</u></b>
 </p>
 
 
