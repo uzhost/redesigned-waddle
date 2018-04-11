@@ -14,18 +14,20 @@ table.serfframe {
     margin: 0;
 }
 table.serfframe td {
-    padding: 3px 5px 2px 12px;
-    border-top: solid 2px #006291;
-    background: #F3F2E7 url(img/bg-1.gif) repeat-x top;
+    padding: 70px 5px 2px 25px;
+    border-top: solid 2px #1f1a14;
+    background: #2F2F2F;
 }
 table.serfframe td img {
-    border: solid 1px #B5BD7A;
+    /* border: solid 1px #B5BD7A; */
 }
 
 
 table.clocktable {
     border-collapse: separate;
     border: none;
+    position: absolute;
+    top: 10px;
 }
 table.clocktable td {
     padding: 0;
@@ -34,28 +36,39 @@ table.clocktable td {
 }
 
 #blockwait {
-    background: url(img/process.gif) no-repeat left top;
-    display: block;
-    padding-left: 21px;
+	background: url(img/process.gif) no-repeat left top;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    left: 45px;
 }
+
+#blocktext {
+    display: block;
+	left: 55px;
+    top: 5px;
+    color: #fff;
+    position: relative;	
+}
+
 #blocktimer {
-    color: #114C5B;
+    color: rgb(173, 118, 71);
     font-size: 18px;
     background: url(img/stimer.png) no-repeat left top;
-    display: block;
-    padding-left: 58px;
-    padding-top: 2px;
-    height: 48px;
+	height: 50px;
+    position: absolute;
+    top: 10px;
+	left: 35px;
 }
 #blocktimer input {
     text-align: left;
-    color: #114C5B;
+    color: rgb(173, 118, 71);
     font-size: 18px;
     background-color: transparent;
     border: none;
 }
 #blocktimer span{
-    color: #89A688;
+    color: rgb(255, 255, 255);
     font-size: 12px;
 }
 .serfnum {
@@ -88,6 +101,9 @@ div.blockerror {
     padding-top: 6px;
     height: 48px;
     margin-top: 4px;
+    position: absolute;
+    top: 10px;
+    left: 35px;
 }
 div.blockerror span{
     font-size: 12px;
@@ -101,6 +117,9 @@ div.blocksuccess {
     padding-top: 6px;
     height: 48px;
     margin-top: 4px;
+    position: absolute;
+    top: 10px;
+    left: 35px;
 }
 div.blocksuccess span{
     font-size: 12px;
