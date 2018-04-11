@@ -1,9 +1,12 @@
 <?php
 /*
- * Серфинг для фермы
- * Версия: 1.00
+ * —ерфинг дл¤ фермы
+ * ¬ерси¤: 1.00
  * SKYPE: sereega393
 */
+
+error_reporting(0);
+
 define('TIME', time());
 define('BASE_DIR', $_SERVER['DOCUMENT_ROOT']);
 
@@ -21,7 +24,7 @@ $db = new db($config->HostDB, $config->UserDB, $config->PassDB, $config->BaseDB)
 $db->Query("set names cp1251;");
 
 $db->Query("SELECT * FROM db_users_b WHERE id = '".$_SESSION['user_id']."'");
-$users_info = $db->FetchAssoc();
+$users_info = $db->FetchArray();
 
 //print_r($_POST);
 
@@ -45,7 +48,7 @@ if (isset($_POST['cnt']) && $_POST['cnt'] == $_SESSION['cnt'])
   
   if (!$db->NumRows()) exit('no2');
   
-  $result = $db->FetchAssoc(); 
+  $result = $db->FetchArray(); 
   
   switch ($use)
   {
@@ -116,7 +119,7 @@ if (isset($_POST['cnt']) && $_POST['cnt'] == $_SESSION['cnt'])
 
     if ($result['status'] == 0)  
     {  
-      $db->query("UPDATE db_serfing SET status = '1' WHERE id = '".$adv."'");        
+      $db->query("UPDATE db_serfing SET status = '3' WHERE id = '".$adv."'");        
    
       exit('1'); 
     }     
@@ -152,34 +155,32 @@ if (isset($_POST['cnt']) && $_POST['cnt'] == $_SESSION['cnt'])
     
     if ($money <= 0) exit('YOU BAD CHEL )))'); 
      
-    if ($_SESSION['admin']) 
-    { 
-      $db->query("UPDATE db_serfing SET `money` = `money` + '".$money."' WHERE id = '".$adv."'"); 
-      
-      exit('1');
-    } 
-    else
-    {
-      if ($users_info['money_b'] >= $money) 
-      { 
-           
-        $db->query("UPDATE db_serfing SET `money` = `money` + '".$money."' WHERE id = '".$adv."'");  
-     
-        $db->query("UPDATE db_users_b SET `money_b` = `money_b` - '".$money."'	WHERE id = '".$_SESSION['user_id']."'");
-    
-        exit('1'); 
-      } 
-      else
-      {
-        exit('NO MONEY');
-      }
-    } 
-              
-    break;
+if ($_SESSION['admin']) {
+$db->query("UPDATE db_serfing SET `money` = `money` + '".$money."' WHERE id = '".$adv."'"); 
 
-    default:
-    break;
-  }
+exit('Оплачено');
+
+} else {
+
+if ($users_info['money_b'] >= $money) 
+{
+$db->query("UPDATE db_serfing SET `money` = `money` + '".$money."' WHERE id = '".$adv."'");  
+     
+$db->query("UPDATE db_users_b SET `money_b` = `money_b` - '".$money."'	WHERE id = '".$_SESSION['user_id']."'");
+		
+	exit('Оплачено'); 
+	  
+} else {
+exit('Недостаточно золота на балансе!');
+}
+
+}
+
+break;
+
+default:
+break;
+}
 }  
 
 exit('no4');
