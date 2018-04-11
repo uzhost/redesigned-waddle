@@ -2,7 +2,7 @@
 define('TIME', time());
 define('BASE_DIR', $_SERVER['DOCUMENT_ROOT']);
 
-header("Content-type: text/html; charset=utf-8");
+header("Content-type: text/html; charset=windows-1251");
 
 session_start();
 
@@ -77,7 +77,7 @@ if (isset($_POST['cnt']) && isset($_POST['num']) && isset($_SESSION['view']) && 
    
       if ($db->NumRows()) 
       {  
-        $result = $db->FetchAssoc();
+        $result = $db->FetchArray();
         
         $db->query("SELECT id FROM db_serfing_view WHERE ident = '".$_SESSION['view']['id']."' and user_id = '".$_SESSION['user_id']."' and time_add + INTERVAL 24*60*60 SECOND > NOW() LIMIT 1");
  
@@ -91,10 +91,10 @@ if (isset($_POST['cnt']) && isset($_POST['num']) && isset($_SESSION['view']) && 
         
         $price = $result['price'];        
              
-        $pay_user = number_format($price - ($price*(10/100)), 2); //оплата пользователю
+        $pay_user = number_format($price - ($price*(30/100)), 3); //оплата пользователю
         
         //зачисление денег за просмотр пользователю
-        $db->query("UPDATE db_users_b SET `money_b` = `money_b` + '".$pay_user."'	WHERE id = '".$_SESSION['user_id']."'");
+        $db->query("UPDATE db_users_b SET `money_p` = `money_p` + '".$pay_user."'	WHERE id = '".$_SESSION['user_id']."'");
           
         //записываем просмотр списываем бабло
         $db->query("UPDATE db_serfing SET `view` = `view` + '1', `money` = `money` - '".$price."'	WHERE id = '".$id."'");
@@ -105,7 +105,7 @@ if (isset($_POST['cnt']) && isset($_POST['num']) && isset($_SESSION['view']) && 
  
         if ($db->NumRows())
         { 
-          $result_view = $db->FetchAssoc();
+          $result_view = $db->FetchArray();
          
           $db->query("UPDATE db_serfing_view SET time_add = NOW() WHERE id = '".$result_view['id']."'");        
         }
