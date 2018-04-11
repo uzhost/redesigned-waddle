@@ -1,13 +1,14 @@
 <?php
 /*
  * Серфинг для фермы
- * Версия: 1.00
- * SKYPE: sereega393
+ * Version: 1.01
+ * Edited by: MrShahzodbek
+ * Telegram: @MrShahzodbek
 */
 define('TIME', time());
 define('BASE_DIR', $_SERVER['DOCUMENT_ROOT']);
 
-header("Content-type: text/html; charset=utf-8");
+header("Content-type: text/html; charset=windows-1251");
 
 session_start();
 
@@ -28,7 +29,7 @@ if (isset($_POST['p1']))
   
   if ($db->NumRows())
   {
-    echo 'account/serfing/view/'.$id.'';
+    echo 'serfing/view/'.$id.'';
   } 
 }  
 ?>
