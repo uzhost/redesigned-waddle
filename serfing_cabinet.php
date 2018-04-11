@@ -219,7 +219,7 @@ return false;
 }
 </script> 
 
-<link rel="stylesheet" href="/css/main.css" type="text/css" />
+<link rel="stylesheet" href="/style/main.css" type="text/css" />
 
 <?php
 $db->Query("SELECT * FROM db_serfing WHERE user_name = '".$_SESSION['user']."' ORDER BY time_add DESC");
@@ -328,7 +328,7 @@ else
 <input name="pay_cnt" value="<?php echo $_SESSION['cnt']; ?>" type="hidden">
 <input name="pay_mode" value="12" type="hidden">
 <input name="pay_user" value="<?php echo $_SESSION['user_id']; ?>" type="hidden">
-<input name="pay_adv" value="<?php echo $row['id']; ?>" type="hidden">Укажите сколько руб, вы хотите внести в бюджет рекламной площадки<br>(Минимум <span id="minsum<?php echo $row['id']; ?>"><?php echo $row['price']; ?></span> руб)<input name="pay_order" maxlength="10" value="<?php echo number_format($row['price']*1000, 2, '.', ''); ?>" type="text"><center><span class="button-red" title="Внести средства в бюджет площадки" onclick="javascript:submitform(<?php echo $row['id']; ?>);">Оплатить</span></center></form>
+<input name="pay_adv" value="<?php echo $row['id']; ?>" type="hidden">Укажите сколько монеты, вы хотите внести в бюджет рекламной площадки<br>(Минимум <span id="minsum<?php echo $row['id']; ?>"><?php echo $row['price']; ?></span> монета)<input name="pay_order" maxlength="10" value="<?php echo number_format($row['price']*1000, 2, '.', ''); ?>" type="text"><center><span class="button-red" title="Внести средства в бюджет площадки" onclick="javascript:submitform(<?php echo $row['id']; ?>);">Оплатить</span></center></form>
 <div id="entermsg<?php echo $row['id']; ?>" style="display: none"></div>
 </td>
 </tr>
